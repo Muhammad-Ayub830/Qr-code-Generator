@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>multi-links</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-fluid main  p-5 h-100 d-flex align-items-center justify-content-center m-auto">
+       <div class="card d-flex align-items-center justify-content-between flex-column">
+       <div class="upper-part mt-4 w-100 p-3">
+        <div class="label mb-3">
+            Enter your link
+        </div>
+        <div class="">
+            <input type="text" class="w-100 py-3 px-3">
+        </div>
+        <div class="label mb-3 mt-4">
+            Enter your link
+        </div>
+        <div class="">
+            <input type="text" class="w-100 py-3 px-3">
+        </div>
+        <div class="label mb-3 mt-4">
+            Enter your link
+        </div>
+        <div class="">
+            <input type="text" class="w-100 py-3 px-3">
+        </div>
+       </div>
+       <div class="lower-part  w-100 text-end p-3 " style="cursor: pointer;" id="generate-btn">
+            <i class="fa-solid fa-qrcode text-white fs-4 p-4"></i>
+       </div>
+       <div class="result  align-items-center justify-content-center " id="result">
+        <div class="qrcode p-5" >
+            <img src="" class="w-100 rounded " style="color: #8263DE !important" id="qr-code">
+            <div class="buttons  py-3 ">
+            <a href="" download="qr-code_downloaded" id="input-1-downlaod">
+                <div class="download mb-2">
+                    <i class="fa-solid fa-download w-100 text-center"></i>
+                    <p>download</p>
+                </div>
+            </a>
+            <div id="share_btn">
+                <div class="share">
+                    <i class="fa-solid fa-share-from-square w-100 text-center "></i>
+                    <p>Share</p>
+                </div>
+            </div>
+            <div class="text-end" id="refresh">
+                <i class="fa-solid fa-caret-right text-white"></i>
+            </div>
+            </div>
+        </div>
+       
+       </div>
+       </div>
+    </div>
+<script>
+    var qr_code = document.getElementById("qr-code");
+var input_1_downlaod = document.getElementById("input-1-downlaod");
+var result = document.getElementById("result");
+var generate_btn = document.getElementById("generate-btn")
+
+generate_btn.addEventListener("click",function(){
+    var input = document.querySelectorAll("input")
+    // handling the inputs of inputs 
+if(input.length>0){
+    var m1 = input[0]
+    var m2 = input[1]
+    var m3 = input[2]
+    if(m1.value.length > 0 && m2.value.length > 0 && m3.value.length > 0){
+
+        result.style.display = "block";
+        var setPatteren = ` the registered link1 __${m1.value}__ link2 __${m2.value}__and link3__${m3.value}`
+      
+      
+      
+        qr_code.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${setPatteren}`
+
+        fetch(qr_code.src).then(response => response.blob()).then(
+            blob => {
+                const url = URL.createObjectURL(blob)
+                input_1_downlaod.setAttribute("href",url)
+            }
+        )
+        document.getElementById("share_btn").addEventListener('click',share)
+        var a = {
+            url : qr_code.src
+        }
+        function share(){
+            navigator.share(a)
+        }
+    }else{
+        input[0].classList.add("anim")
+        input[1].classList.add("anim")
+        input[2].classList.add("anim")
+        setTimeout(() => {
+            input[0].classList.remove("anim")
+            input[1].classList.remove("anim")
+            input[2].classList.remove("anim")
+        }, 2000);
+        
+    } 
+}
+    
+})
+document.getElementById("refresh").addEventListener('click',function(){
+    result.style.display = "none"
+})
+</script>
+</body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Russo+One&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</html>

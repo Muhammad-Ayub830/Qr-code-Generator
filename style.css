@@ -10,6 +10,34 @@
     box-sizing: border-box !important;
     
 }
+.lower-part i{
+    background-color: var(--background-color);
+    border-radius: 50%;
+
+} 
+.result{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #00000081;
+    display: none;
+    border-radius: 30px !important;
+}
+.result i{
+    font-size: 30px !important;
+}
+.download, .share{
+    background-color: var(--background-color);
+    padding:20px !important;
+    color: var(--page-color);
+    width: 100%;
+    height: 100px;
+    cursor: pointer;
+}
+.download, .share p{
+    width: 100%;
+    text-align: center;
+}
 a{
     text-decoration: none;
 }
@@ -26,6 +54,13 @@ body{
     width: 500px !important;
     margin-top: 100px !important;
 }
+.card{
+    background-color: var(--page-color);
+    width: 370px !important;
+    height: 600px;
+    border-radius: 30px;
+    position:relative;
+}
 .content{
     background-color: var(--page-color);
     border-radius: 30px;
@@ -35,6 +70,22 @@ body{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     transition: .5s;
     cursor: pointer;
+}
+input{
+    background:transparent;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: .5s;
+    cursor: pointer;
+    background-color: var(--page-color);
+    color: #666666ce
+
+}
+.anim{
+    animation:onEmptyInputs .1s linear 10 ;
+    border: 1px solid crimson;
 }
 .type-of-text .link:hover{
    transform: translateX(10px);
@@ -54,4 +105,34 @@ body{
         padding: 0px !important;
     }
     
+}
+/* animation */
+@keyframes onEmptyInputs{
+    0%{
+
+            transform: translateX(0px);
+        
+    }
+    25%{
+       
+            transform: translateX(-2px);
+        
+    }
+    50%{
+    
+            transform: translateX(0px);
+        
+    }
+    75%{
+    
+            transform: translateX(2px);
+        
+    }
+    100%{
+     
+            transform: translateX(0px);
+        
+    }
+    
+ 
 }
