@@ -60,6 +60,7 @@ body{
     height: 600px;
     border-radius: 30px;
     position:relative;
+
 }
 .content{
     background-color: var(--page-color);
@@ -104,7 +105,18 @@ input{
     .main{
         padding: 0px !important;
     }
-    
+    .card{
+        margin: 20px 20px !important;
+    }
+    .type-of-text{
+        padding: 0px !important;
+    }
+    .title{
+        padding:0px !important;
+    }
+    .label{
+        margin-top: 20px !important;
+    }
 }
 /* animation */
 @keyframes onEmptyInputs{
